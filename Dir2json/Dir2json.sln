@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32901.82
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dir2json", "Dir2json.csproj", "{CED6ADD6-C4FC-4266-858B-6FB812B78702}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug BOF|Any CPU = Debug BOF|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release BOF|Any CPU = Release BOF|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CED6ADD6-C4FC-4266-858B-6FB812B78702}.Debug BOF|Any CPU.ActiveCfg = Debug BOF|Any CPU
+		{CED6ADD6-C4FC-4266-858B-6FB812B78702}.Debug BOF|Any CPU.Build.0 = Debug BOF|Any CPU
+		{CED6ADD6-C4FC-4266-858B-6FB812B78702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CED6ADD6-C4FC-4266-858B-6FB812B78702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CED6ADD6-C4FC-4266-858B-6FB812B78702}.Release BOF|Any CPU.ActiveCfg = Release BOF|Any CPU
+		{CED6ADD6-C4FC-4266-858B-6FB812B78702}.Release BOF|Any CPU.Build.0 = Release BOF|Any CPU
+		{CED6ADD6-C4FC-4266-858B-6FB812B78702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CED6ADD6-C4FC-4266-858B-6FB812B78702}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {174CC633-6607-41F2-9379-B80EE8F41F1C}
+	EndGlobalSection
+EndGlobal
