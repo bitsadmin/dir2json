@@ -1,7 +1,7 @@
 <#
 Author: @bitsadmin
 Website: https://github.com/bitsadmin/dir2json
-Blog: https://blog.bitsadmin.com/blog/efficient-directory-structure-enumeration-using-dir2json
+Blog: https://blog.bitsadmin.com/blog/digging-for-secrets
 License: BSD 3-Clause
 #>
 
