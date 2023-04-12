@@ -1,3 +1,8 @@
+# Author: @bitsadmin
+# Website: https://github.com/bitsadmin/dir2json
+# Blog: https://blog.bitsadmin.com/blog/digging-for-secrets
+# License: BSD 3-Clause
+
 # Statistics
 tail -n +2 Drive_C.csv | wc -l # Total number of entries
 awk -F',' '$2 !~ /"d....."/ { print }' Drive_C.csv | wc -l # Number of files
