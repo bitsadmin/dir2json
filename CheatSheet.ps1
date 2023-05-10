@@ -88,7 +88,7 @@ $admin | Where-Object Extension -In @('.vbs','.cmd','.ps1','.bat') | Format-Tabl
 $csv | Where-Object FullName -Like 'C:\Data\*' | Format-Table Mode,LastWriteTime,Length,FullName
 
 # List files in specific path
-$csv | Where-Object Depth -EQ 1 | Where-Object FullName -Like 'C:\*', | Format-Table -AutoSize Mode,LastWriteTime,Length,Name
+$csv | Where-Object Depth -EQ 1 | Where-Object FullName -Like 'C:\*' | Format-Table -AutoSize Mode,LastWriteTime,Length,Name
 $csv | Where-Object Depth -EQ 2 | Where-Object FullName -Like 'C:\Users\*' | Format-Table -AutoSize Mode,LastWriteTime,Length,Name
 
 # Calculate size of a folder
