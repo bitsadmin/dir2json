@@ -17,12 +17,12 @@ Latest binaries available from the [Releases](https://github.com/bitsadmin/dir2j
 ## Demos
 **In-memory execution in Cobalt Strike**
 <video controls>
-  <source src="https://blog.bitsadmin.com/assets/img/20230402_digging-for-secrets/cobaltstrike.mp4" type="video/mp4">
+  <source src="https://blog.bitsadmin.com/assets/img/20230403_digging-for-secrets/cobaltstrike.mp4" type="video/mp4">
 </video>
 
 **Convert JSON to CSV and query CSV**
 <video controls>
-  <source src="https://blog.bitsadmin.com/assets/img/20230402_digging-for-secrets/powershell.mp4" type="video/mp4">
+  <source src="https://blog.bitsadmin.com/assets/img/20230403_digging-for-secrets/powershell.mp4" type="video/mp4">
 </video>
 
 **Example queries**
@@ -70,7 +70,7 @@ Usage: Dir2json.exe drive:path output [/MaxDepth=value] [/EntriesPerFile=value] 
             also makes it set to depth 999.
 
     [/EntriesPerFile=value]
-            Maximum entries per file (x 1000). Makes sure that memory is periodically flushed. Default: 0 meaning GêP
+            Maximum entries per file (x 1000). Makes sure that memory is periodically flushed. Default: 0 meaning GÃªP
             For example 10 means that after 10.000 entries the file will be saved/downloaded and memory cleaned up.
 
     [/FollowSymlinks]
