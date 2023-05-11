@@ -16,14 +16,12 @@ Latest binaries available from the [Releases](https://github.com/bitsadmin/dir2j
 
 ## Demos
 **In-memory execution in Cobalt Strike**
-<video controls>
-  <source src="https://blog.bitsadmin.com/assets/img/20230403_digging-for-secrets/cobaltstrike.mp4" type="video/mp4">
-</video>
+
+[cobaltstrike.mp4](https://blog.bitsadmin.com/assets/img/20230403_digging-for-secrets/cobaltstrike.mp4)
 
 **Convert JSON to CSV and query CSV**
-<video controls>
-  <source src="https://blog.bitsadmin.com/assets/img/20230403_digging-for-secrets/powershell.mp4" type="video/mp4">
-</video>
+
+[powershell.mp4](https://blog.bitsadmin.com/assets/img/20230403_digging-for-secrets/powershell.mp4)
 
 **Example queries**
 A cheat sheet with various PowerShell queries generating, importing and querying the directory listing can be found in the `CheatSheet.ps1` file in this repository.
