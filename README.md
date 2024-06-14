@@ -9,22 +9,22 @@ Dir2json can either be executed from the commandline, or from memory in a Cobalt
 
 As a .json file is not as easy to search through, the `Json2csv.ps1` script converts the (hierarchical) JSON structure to a (flat) CSV file which can be easily queried using PowerShell (examples in `CheatSheet.ps1`) or using tools like `grep`.
 
-This utility has been developed for use in Red Team assignments to be able to efficiently perform offline searches for interesting files and directories. At the BITSADMIN blog an in-depth article on this tool is available: [Digging for secrets on corporate network shares](https://blog.bitsadmin.com/blog/digging-for-secrets).
+This utility has been developed for use in Red Team assignments to be able to efficiently perform offline searches for interesting files and directories. At the BITSADMIN blog an in-depth article on this tool is available: [Digging for Secrets on Corporate Shares](https://blog.bitsadmin.com/blog/digging-for-secrets).
 
 Latest binaries available from the [Releases](https://github.com/bitsadmin/dir2json/releases) page.
 
 
 ## Demos
-**In-memory execution in Cobalt Strike**
+### In-memory execution in Cobalt Strike**
 
 [cobaltstrike.mp4](https://blog.bitsadmin.com/assets/img/20230403_digging-for-secrets/cobaltstrike.mp4)
 
-**Convert JSON to CSV and query CSV**
+### Convert JSON to CSV and query CSV
 
 [powershell.mp4](https://blog.bitsadmin.com/assets/img/20230403_digging-for-secrets/powershell.mp4)
 
-**Example queries**
-A cheat sheet with various PowerShell queries generating, importing and querying the directory listing can be found in the `CheatSheet.ps1` file in this repository.
+### Example queries
+A cheat sheet with various PowerShell queries generating, importing and querying the directory listing can be found in the `CheatSheet.ps1` file in this repository. Additionally, `CheatSheet.sh` is available to perform similar queries in bash.
 
 
 ## Usage
