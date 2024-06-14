@@ -15,7 +15,7 @@ Latest binaries available from the [Releases](https://github.com/bitsadmin/dir2j
 
 
 ## Demos
-### In-memory execution in Cobalt Strike**
+### In-memory execution in Cobalt Strike
 
 [cobaltstrike.mp4](https://blog.bitsadmin.com/assets/img/20230403_digging-for-secrets/cobaltstrike.mp4)
 
