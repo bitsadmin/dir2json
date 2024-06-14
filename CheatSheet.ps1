@@ -68,7 +68,7 @@ $csv | Where-Object Name -match 'password' | Format-Table -AutoSize Mode,LastWri
 
 # Search files with interesting extensions
 # Sysadmin files
-$admin = $csv | Where-Object Extension -Match '^\.(kdbx?|pfx|p12|pem|p7b|key|ppk|crt|pub|config|cfg|ini|sln|\w{2}proj|sql|cmd|bat|ps1|vbs|log|rdp|rdg|ica|wim|vhdx?|vmdk)$'
+$admin = $csv | Where-Object FullName -NotLike 'C:\Windows\WinSxS\*' | Where-Object Extension -Match '^\.(kdbx?|pfx|p12|pem|p7b|key|csr|keystore|keys|jks|ppk|crt|cer|pub|config|cfg|conf|ini|sln|\w{2}proj|sql|cmd|bat|ps1|vbs|log|rdp|rdg|ica|ovpn|pbk|wim|vhdx?|vmdk)$' | Where-Object Name -NotMatch 'desktop.ini' | Where-Object Length -NE 0
 $admin | Group-Object Extension -NoElement | Sort-Object -Descending Count,Name | Format-Table Name,Count
 $admin | Foreach-Object { $f=$_.FullName -split '\\'; if($f.Count -gt 3){$f[0..2] -join '\'} } | Select-Object -Unique # List folders in which admin files are found
 $admin | Sort-Object -Descending LastWriteTime | Format-Table Mode,LastWriteTime,Length,FullName | Out-Host -Paging
