@@ -12,7 +12,7 @@ License: BSD 3-Clause
 
 <#
 .SYNOPSIS
-Extract gzip archive
+Convert a JSON file to CSV format
 
 .PARAMETER InFile
 Path to a gzipped file
@@ -241,7 +241,7 @@ foreach($JsonFile in $inputFiles)
         $filename = [System.IO.Path]::GetFileNameWithoutExtension($filenamewithext) + ".csv"
         $GeneratedCsvOutFile = Join-Path -Path $path -ChildPath $filename
 
-            # Use generated name for final output file if no name is provided
+        # Use generated name for final output file if no name is provided
         if([string]::IsNullOrEmpty($CsvOutFile))
         {
             $CsvOutFile = $GeneratedCsvOutFile -replace '_001',''
