@@ -11,18 +11,19 @@ License: BSD 3-Clause
 # Create directory listing (Windows PowerShell)
 # "-Depth 15" can also be used instead of "-Recurse" to specify a maximum recursion depth
 # Path can also be a network share: "\\?\UNC\FS01\Share" instead of "\\?\C:\". FullName.Replace("\\?\","") then also needs to be updated to FullName.Replace("\?\UNC","")
-Get-ChildItem -LiteralPath '\\?\C:\' -Depth 25 -Force | ForEach-Object { [PSCustomObject]@{Name=$_.Name; Mode=$_.Mode; Length=$_.Length; LastWriteTime=$_.LastWriteTime.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ss'); FullName=$_.FullName.Replace('\\?\','') } } | Export-Csv -Encoding UTF8 -NoTypeInformation Drive_C.csv
+Get-ChildItem -LiteralPath '\\?\C:\' -Depth 25 -Force | ForEach-Object { [PSCustomObject]@{Name=$_.Name; Mode=$_.Mode; Length=$_.Length; LastWriteTime=$_.LastWriteTime.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ss'); FullName=$_.FullName.Replace('\\?\','') } } | Export-Csv -Encoding utf8 -NoTypeInformation Drive_C.csv
 
 # Create directory listing (PowerShell Core)
 # Even though the Windows PowerShell oneliner can also be used in PowerShell Core, the PowerShell Core onlineliner is a bit shorter and looks a bit cleaner
 # Dash is added to Mode attribute to have the PowerShell Core listing match the Windows PowerShell one. PowerShell core updates the first Mode flag ('d') to 'l' in case the folder is a symlink
 # By default PowerShell Core does not enter into symlinked directories, but this can be forced using the -FollowSymlink parameter
-Get-ChildItem -Recurse -Force -Path 'C:\' | % { [PSCustomObject]@{Name=$_.Name; Mode=$_.Mode+'-'; Length=$_.Length; LastWriteTime=$_.LastWriteTime.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ss'); FullName=$_.FullName } } | Export-Csv -NoTypeInformation Drive_C.csv
+Get-ChildItem -Recurse -Force -Path 'C:\' | Foreach-Object { [PSCustomObject]@{Name=$_.Name; Mode=$_.Mode+'-'; Length=$_.Length; LastWriteTime=$_.LastWriteTime.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ss'); FullName=$_.FullName } } | Export-Csv -Encoding utf8 -NoTypeInformation Drive_C.csv
 
 # Create directory listing (Dir2json)
 Dir2Json.exe C:\ Drive_C.json.gz
-# Convert to csv
-.\Json2csv.ps1 Drive_C.json.gz
+# Convert to csv (2 options)
+.\json2csv.ps1 Drive_C.json.gz
+python .\json2csv.py Drive_C.json.gz
 
 
 # --------------------------------
@@ -34,8 +35,8 @@ Dir2Json.exe C:\ Drive_C.json.gz
 # D2: Extension attribute
 # D3: Depth attribute
 # D4: Mode attributes
-$csv = Import-Csv -Path 'Drive_C.csv' | Select-Object `
-	Name,@{n='Length';e={[int64]$_.Length}},Mode,LastWriteTime,FullName,`
+$csv = Import-Csv -Encoding utf8 -Path 'Drive_C.csv' | Select-Object `
+	Name,@{n='Length';e={[int64]$_.Length}},Mode,@{n='LastWriteTime';e={[datetime]$_.LastWriteTime}},FullName,`
 	@{n='Extension';e={if($_.Mode[0] -ne 'd'){[System.IO.Path]::GetExtension($_.Name)}else{''}}},`
 	@{n='Depth';e={$_.FullName.Split('\').Count - 1}}#,`
 <#
@@ -92,7 +93,7 @@ $csv | Where-Object Depth -EQ 1 | Where-Object FullName -Like 'C:\*' | Format-Ta
 $csv | Where-Object Depth -EQ 2 | Where-Object FullName -Like 'C:\Users\*' | Format-Table -AutoSize Mode,LastWriteTime,Length,Name
 
 # Calculate size of a folder
-($csv | Where-Object FullName -Like 'C:\Data\*' | Measure -Sum Length).Sum / 1GB
+($csv | Where-Object FullName -Like 'C:\Data\*' | Measure-Object -Sum Length).Sum / 1GB
 
 # Top 25 largest files on the filesystem
 $csv | Sort-Object -Descending Length | Select-Object -First 25 | Select-Object Mode,LastWriteTime,@{n='LengthMB';e={[int][Math]::Truncate($_.Length/1MB)}},FullName | Format-Table Mode,LastWriteTime,LengthMB,FullName
@@ -101,6 +102,9 @@ $csv | Sort-Object -Descending Length | Select-Object -First 25 | Select-Object 
 # This query only works for CSVs created by Dir2json or Windows PowerShell; in PowerShell Core, the 'd' will have been substituted by an 'l',
 # however then it is not clear anymore whether it is a symlinked file or directory
 $csv | Where-Object Mode -Match 'd....l' | Format-Table Mode,LastWriteTime,Length,FullName
+
+# List files modified in the past 10 days
+$csv | Where-Object Mode -NotMatch 'd.....' | Where-Object LastWriteTime -GT ([datetime]::Now.AddDays(-10)) | Format-Table Mode,LastWriteTime,Length,FullName
 
 # List 25 most recently created hidden directories
 $csv | Sort-Object -Descending LastWriteTime | Where-Object Mode -Match 'd..h..' | Select-Object -First 25 | Format-Table Mode,LastWriteTime,Length,FullName
