@@ -7,7 +7,7 @@ Dir2json is a .NET utility which recursively lists drives or network shares stor
 
 Dir2json can either be executed from the commandline, or from memory in a Cobalt Strike beacon using @CCob's [BOF.NET](https://github.com/CCob/BOF.NET) where Cobalt Strike's in-memory download functionality is used to retrieve the resulting file listing.
 
-As a .json file is not as easy to search through, the `Json2csv.ps1` script converts the (hierarchical) JSON structure to a (flat) CSV file which can be easily queried using PowerShell (examples in `CheatSheet.ps1`) or using tools like `grep`.
+As a .json file is not as easy to search through, the `json2csv.ps1` or `json2csv.py` scripts convert the (hierarchical) JSON structure to a (flat) CSV file which can be easily queried using PowerShell (examples in `CheatSheet.ps1`) or using tools like `grep` (examples in `CheatSheet.sh`).
 
 This utility has been developed for use in Red Team assignments to be able to efficiently perform offline searches for interesting files and directories. At the BITSADMIN blog an in-depth article on this tool is available: [Digging for Secrets on Corporate Shares](https://blog.bitsadmin.com/blog/digging-for-secrets).
 
@@ -108,11 +108,10 @@ Examples:
 
 
 ## Notes
-- Before the full directory listing is stored on disk, it is kept in memory. Even though the storage is quite efficient, on large filesystems it can use quite some memory and if the system does not have a lot of memory could lead to OutOfMemory exceptions. For that reason the `/EntriesPerFile=X` parameter is available which downloads the results thusfar and frees up memory before moving on. The `Json2csv.ps1` script recognizes when a file has been split and merges the output back into a single .csv.
+- Before the full directory listing is stored on disk, it is kept in memory. Even though the storage is quite efficient, on large filesystems it can use quite some memory and if the system does not have a lot of memory could lead to OutOfMemory exceptions. For that reason the `/EntriesPerFile=X` parameter is available which downloads the results thusfar and frees up memory before moving on. The `json2csv.ps1` and `json2csv.py` scripts recognize when a file has been split and merges the output back into a single .csv.
 - For some reason in some circumstances (which I was not able to debug because it was a client environment) executing dir2json against `C:\` through BOF.NET just stops execution after a while without showing any message while the beacon just stays alive. In those cases the instead of collecting the files of the full `C:\` drive, create a file listing of the different folders (e.g. `C:\Users\`, `"C:\Program Files\"` individually and merge the outputs later.
 
 
 ## Future work
 - Support for enumeration of folders and directories on SharePoint sites (`Microsoft.SharePoint.Client` .NET namespace)
 - Support for the Windows registry
-- Create a more memory-efficient Json2Csv converter (e.g. in Python)
